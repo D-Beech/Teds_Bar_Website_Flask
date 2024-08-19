@@ -10,5 +10,10 @@ def home():
 def menu():
     return render_template("menu.html")
 
+@app.route("/landingpage")
+def landingpage():
+    return render_template("landingpage.html")
+
+
 if __name__ == "__main__":
     app.run(debug=True)
