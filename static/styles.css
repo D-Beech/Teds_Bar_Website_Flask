@@ -205,4 +205,49 @@ a {
 
 /*End of Circle Image Panel Styling*/
 /*End of Landing Page Styling*/
-        
+
+/*Start of Menu Styling*/
+.menuBannerGrid{
+    height: 70vh;
+    width: 90vw;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+    position: relative;
+    background: blue;
+}
+
+.menuHeader{
+    height: 10vh;
+    align-content: center;
+}
+
+.menuGrid{
+    height: 120vh;
+    width: 90vw;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+    position: relative;
+    background: blue;
+}
+
+.menuGrid div{
+    background: white;
+    margin: 10%;
+}
+
+.foodMenu{
+    grid-column:1/7 ;
+    grid-row: 1/12;
+}
+
+.drinkMenu{
+    grid-column:7/13 ;
+    grid-row: 1/12;
+}
+
+
+/*End of Menu Styling*/
