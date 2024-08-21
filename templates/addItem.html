@@ -59,16 +59,10 @@
     .container {
         width: 1400px;
         margin: auto;
-        background: pink;
+        /* background: pink; */
         display: flex;
     }
 
-    .container{
-    width: 1400px;
-    margin: auto;
-    /* background: pink; */
-    display: flex;
-}
 
 /*banner*/
 .banner{
@@ -126,6 +120,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;    
+    /* display: none; */
 }
 
 .itemCard{
@@ -171,9 +166,43 @@
     grid-column: 11;
     border-radius: 20px;
     grid-row: 6;
-    height: 35px;
-    
+    height: 35px;   
 }
+
+
+.cart{
+    width: 400px;
+    height: 100vh;
+    background: lightblue;
+    position: fixed;
+    top:0;
+    right:0;
+}
+
+.exit{
+    height: 10%;
+    background: red;
+}
+
+.cartContent{
+    height:80%;
+    justify-content: center;
+    overflow: scroll;
+}
+
+.proceed{
+    height:10%;
+    background: red;
+}
+
+
+
+.cart .itemCard{
+    width: 80%;
+    height: 100px;
+}
+
+
 </style>
 
 
@@ -197,10 +226,14 @@
   
     </div>
 
+
+    <!--Item Gallery Development Below-->>
     <div class="container">
         <div class="itemGallery">
-            {% for item in stuff %}
-            <div class="itemCard">
+            {% for item in stuff%}
+
+            
+            <div class="itemCard" id="{{item.id}}" onclick="killItemCard(this.id)">
                 <h3 class="itemName">{{item.name}}</h3>
                 <p class="itemDescription">{{item.description}}</p>
                 <h4 class="itemPrice">$ {{item.price}}</h4>
@@ -211,13 +244,46 @@
                 <button class="itemAddToCartBtn">
                     Add
                 </button>
-            </div>  
-
+            </div> 
             {% endfor %}
-             
         </div>
     </div>
- 
-    
+
+    <!--Cart Development below-->
+    <div class="container">
+        <div class="cart" id="cart">
+
+            <div class="exit">
+                <button onclick=addToCart()>x</button>
+
+            </div>
+
+
+            <div class="cartContent">
+
+            </div>
+
+
+
+
+            
+            <div class="proceed"></div>
+        </div>
+    </div>
 </body>
+
+<script>
+
+function addToCart(){
+    document.getElementById("cart").style.display="none";
+    console.log("Cart Closed Click")
+}
+
+function killItemCard(card_id){
+    document.getElementById(card_id).style.display="none";
+    console.log(card_id + "success")
+}
+
+</script>
+
 </html>
