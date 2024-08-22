@@ -1,10 +1,9 @@
 from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 
 #Database
 db = SQLAlchemy()
 
-
-#MenuItem Classes
 #This is the base class
 class MenuItem(db.Model):
 
@@ -63,3 +62,17 @@ class Wine(MenuItem):
     __mapper_args__ = {
         'polymorphic_identity': 'Wine',
     }
+
+
+
+#Cart Class
+# class Cart(db.Model):
+#     __tablename__="Cart"
+#     id = db.Column(db.Integer, primary_key=True)
+
+
+
+
+
+
+
