@@ -1,80 +1,14 @@
 from flask import Flask, redirect, url_for, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from models import *
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:mandeepsingh@localhost:5432/TedsBarAndCafeWebiste-DB'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:CoffeeSnob69@localhost:5432/TedsBarAndCafeWebiste-DB'
 
 #Intitialize the database
-db = SQLAlchemy(app)
+db.init_app(app)
 migrate=Migrate(app, db)
-
-
-#Create db model
-
-#This is the base class
-class MenuItem(db.Model):
-
-    __tablename__ = 'MenuItems'
-
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), nullable=False)
-    description = db.Column(db.String(200))
-    price = db.Column(db.Numeric, nullable=False)
-    img_path = db.Column(db.String(100))
-
-    __mapper_args__ = {
-        'polymorphic_identity': 'MenuItem',
-    }
-
-
-#Child classes of MenuItem
-#implementing joined table inhertance seems like the easiest option in SQLAlchemy
-class Burger(MenuItem):
-    __tablename__ = 'Burger'
-    id = db.Column(db.Integer, db.ForeignKey('MenuItems.id'), primary_key=True)
-
-    __mapper_args__ = {
-        'polymorphic_identity': 'Burger',
-    }
-
-class Snack(MenuItem):
-    __tablename__ = 'Snack'
-    id = db.Column(db.Integer, db.ForeignKey('MenuItems.id'), primary_key=True)
-    specialty = db.Column(db.String(20))
-
-    __mapper_args__ = {
-        'polymorphic_identity': 'Snack',
-    }
-
-class Coffee(MenuItem):
-    __tablename__ = 'Coffee'
-    id = db.Column(db.Integer, db.ForeignKey('MenuItems.id'), primary_key=True)
-
-    __mapper_args__ = {
-        'polymorphic_identity': 'Coffee',
-    }
-
-class Beer(MenuItem):
-    __tablename__ = 'Beer'
-    id = db.Column(db.Integer, db.ForeignKey('MenuItems.id'), primary_key=True)
-
-    __mapper_args__ = {
-        'polymorphic_identity': 'Beer',
-    }
-
-class Wine(MenuItem):
-    __tablename__ = 'Wine'
-    id = db.Column(db.Integer, db.ForeignKey('MenuItems.id'), primary_key=True)
-
-    __mapper_args__ = {
-        'polymorphic_identity': 'Wine',
-    }
-
-
-
-
-
 
 #Routes
 @app.route("/")
