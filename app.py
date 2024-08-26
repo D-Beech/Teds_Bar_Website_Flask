@@ -64,6 +64,7 @@ def remove_from_cart():
 
 @app.route("/empty", methods=['POST'])
 def empty_cart():
+    cart.save_to_db()
     cart.empty_cart()
     return redirect('/addItem')
 

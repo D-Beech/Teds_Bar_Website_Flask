@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from classes import *
 from datetime import datetime
+from sqlalchemy.dialects.postgresql import ARRAY
 
 #Database
 db = SQLAlchemy()
@@ -66,7 +67,12 @@ class Wine(MenuItem):
 
 
 
-class Cart():
+class Cart(db.Model):
+    __tablename__ = 'Carts'
+
+    id = db.Column(db.Integer, primary_key=True)
+    cart_items = db.Column(ARRAY(db.Integer))
+
     def __init__(self):
         self.cart_items = []
         pass
@@ -88,6 +94,10 @@ class Cart():
     
     def empty_cart(self):
         self.cart_items = []
+
+    def save_to_db(self):
+        db.session.add(self)
+        db.session.commit()
 
     def get_contents_as_ids(self):
         return self.cart_items()
