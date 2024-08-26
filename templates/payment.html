@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .checkout-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .checkout-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .checkout-header h2 {
+            color: #333;
+            margin: 0;
+        }
+
+        .checkout-header span {
+            color: #f44336;
+            font-weight: bold;
+        }
+
+        .checkout-amount {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .payment-method {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        .payment-method label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .payment-method input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        .payment-method .payment-details {
+            display: none;
+        }
+
+        .payment-method input[type="radio"]:checked + .payment-details {
+            display: block;
+        }
+
+        .payment-details input[type="text"],
+        .payment-details input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .payment-details label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .payment-details input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        .payment-button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        .payment-button:hover {
+            background-color: #0069d9;
+        }
+    </style>
+</head>
+<body>
+    <div class="checkout-container">
+        <div class="checkout-header">
+            <h2>Checkout <span>Select Payment Method</span></h2>
+        </div>
+        <div class="checkout-amount">
+            $ 210.00
+        </div>
+        <div class="payment-method">
+            <label>
+                <input type="radio" name="payment" value="card" checked> Credit/Debit Card
+            </label>
+            <div class="payment-details">
+                <label for="card-number">Card Number:</label>
+                <input type="text" id="card-number" placeholder="XXXX XXXX XXXX XXXX">
+                <label for="expiry-date">Expiry Date:</label>
+                <input type="text" id="expiry-date" placeholder="MM/YY">
+                <label for="cvv">CVV:</label>
+                <input type="number" id="cvv" placeholder="XXX">
+                <label>
+                    <input type="checkbox" name="save-card"> Save Card for future purchases
+                </label>
+            </div>
+        </div>
+        <div class="payment-method">
+            <label>
+                <input type="radio" name="payment" value="paypal"> PayPal
+            </label>
+            <div class="payment-details">
+                <p>You will be redirected to PayPal to complete your purchase.</p>
+            </div>
+        </div>
+        <button class="payment-button">Pay Now</button>
+    </div>
+</body>
+</html>

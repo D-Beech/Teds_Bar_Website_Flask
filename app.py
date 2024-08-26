@@ -27,6 +27,9 @@ def menu():
 def order():
     return render_template("order.html")
 
+@app.route("/payment")
+def payment():
+    return render_template("payment.html")
 
 
 #This is a simple API I am using to learn flask and develop the item gallery/db, it will be removed
