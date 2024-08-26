@@ -38,8 +38,5 @@ class Card_Details():
         pass
 
 
-class Completed_Order():
-    def __init__(self, _cart, _customer_details):
-        self.cart = _cart
-        self.customer_details = _customer_details
+
     

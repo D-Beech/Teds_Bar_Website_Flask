@@ -2,13 +2,17 @@ from flask import Flask, redirect, url_for, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from models import *
+from classes import *
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:CoffeeSnob69@localhost:5432/TedsBarAndCafeWebiste-DB'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:password@localhost:5432/TedsBarAndCafeWebiste-DB'
 
 #Intitialize the database
 db.init_app(app)
 migrate=Migrate(app, db)
+
+#Initialize Cart
+cart = []
 
 #Routes
 @app.route("/")
@@ -23,6 +27,9 @@ def menu():
 def order():
     return render_template("order.html")
 
+@app.route("/payment")
+def payment():
+    return render_template("payment.html")
 
 
 #This is a simple API I am using to learn flask and develop the item gallery/db, it will be removed
@@ -47,6 +54,14 @@ def addItem():
         menu_items = MenuItem.query.all()
         return render_template("addItem.html", stuff=menu_items)
     
+@app.route('/addItem/<int:product_id>', methods=['GET','POST'])
+def add_to_cart(product_id):
+
+    product = MenuItem.query.filter(MenuItem.id == product_id)
+    cart.add(product)
+    menu_items = MenuItem.query.all()
+
+    return render_template("addItem.html", stuff=menu_items, _cart=cart)
 
 #main
 if __name__ == "__main__":
