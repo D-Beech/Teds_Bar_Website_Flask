@@ -1,4 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
+from classes import *
 from datetime import datetime
 
 #Database
@@ -70,6 +71,11 @@ class Wine(MenuItem):
 #     __tablename__="Cart"
 #     id = db.Column(db.Integer, primary_key=True)
 
+class Completed_Order():
+    def __init__(self, _cart, _customer_details):
+        self.cart = _cart
+        self.customer_details = _customer_details
+        
 
 
 

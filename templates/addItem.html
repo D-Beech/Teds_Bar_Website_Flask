@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 </head>
 
 <style>
@@ -233,7 +234,7 @@
             {% for item in stuff%}
 
             
-            <div class="itemCard" id="{{item.id}}" onclick="killItemCard(this.id)">
+            <div class="itemCard">
                 <h3 class="itemName">{{item.name}}</h3>
                 <p class="itemDescription">{{item.description}}</p>
                 <h4 class="itemPrice">$ {{item.price}}</h4>
@@ -241,8 +242,7 @@
                     
                 </div>
 
-                <button class="itemAddToCartBtn">
-                    Add
+                <button class="itemAddToCartBtn" type="submit" id="{{item.id}}"></button>    
                 </button>
             </div> 
             {% endfor %}
@@ -254,13 +254,27 @@
         <div class="cart" id="cart">
 
             <div class="exit">
-                <button onclick=addToCart()>x</button>
+                <button onclick=closeCart()>x</button>
 
             </div>
 
 
             <div class="cartContent">
-
+                {% for item in stuff%}
+                x= item.id
+            
+                <div class="itemCard">
+                    <h3 class="itemName">{{item.name}}</h3>
+                    <p class="itemDescription">{{item.description}}</p>
+                    <h4 class="itemPrice">$ {{item.price}}</h4>
+                    <div class="itemImg">
+                        
+                    </div>
+    
+                    <button class="itemAddToCartBtn" type="submit" id="{{item.id}}" action="/addItem/{{item.id}}" method="GET" onclick="addItem(this.id)"></button>    
+                    </button>
+                </div> 
+                {% endfor %}
             </div>
 
 
@@ -273,15 +287,25 @@
 </body>
 
 <script>
+let Contents = []
 
-function addToCart(){
+function closeCart(){
     document.getElementById("cart").style.display="none";
     console.log("Cart Closed Click")
 }
 
 function killItemCard(card_id){
     document.getElementById(card_id).style.display="none";
-    console.log(card_id + "success")
+    console.log(card_id + "success")  
+}
+
+function addItem(card_id){
+    let html = document.getElementById("card_id").innerHTML;
+    document.getElementById("cartContent").innerHTML = html;
+}
+
+function fillCart(){
+
 }
 
 </script>
