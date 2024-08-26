@@ -12,7 +12,7 @@ db.init_app(app)
 migrate=Migrate(app, db)
 
 #Initialize Cart
-cart = []
+cart = Cart()
 
 #Routes
 @app.route("/")
@@ -27,9 +27,6 @@ def menu():
 def order():
     return render_template("order.html")
 
-@app.route("/payment")
-def payment():
-    return render_template("payment.html")
 
 
 #This is a simple API I am using to learn flask and develop the item gallery/db, it will be removed
@@ -48,20 +45,27 @@ def addItem():
             return redirect('/addItem')
         except:
             return "There was an error adding the item"
-            
-
     else:
         menu_items = MenuItem.query.all()
-        return render_template("addItem.html", stuff=menu_items)
-    
-@app.route('/addItem/<int:product_id>', methods=['GET','POST'])
-def add_to_cart(product_id):
+        return render_template("addItem.html", stuff=menu_items, cartItems=cart.get_contents(), cartTotal=cart.total_price())
 
-    product = MenuItem.query.filter(MenuItem.id == product_id)
-    cart.add(product)
-    menu_items = MenuItem.query.all()
+#Cart APPIS    
+@app.route("/add", methods=['POST'])
+def add_to_cart():
+    item_id = request.form['itemId']
+    cart.add_item(item_id)
+    return redirect('/addItem')
 
-    return render_template("addItem.html", stuff=menu_items, _cart=cart)
+@app.route("/remove", methods=['POST'])
+def remove_from_cart():
+    item_id = request.form['itemId']
+    cart.remove_item(item_id)
+    return redirect('/addItem')
+
+@app.route("/empty", methods=['POST'])
+def empty_cart():
+    cart.empty_cart()
+    return redirect('/addItem')
 
 #main
 if __name__ == "__main__":

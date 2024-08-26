@@ -233,18 +233,21 @@
         <div class="itemGallery">
             {% for item in stuff%}
 
-            
-            <div class="itemCard">
-                <h3 class="itemName">{{item.name}}</h3>
-                <p class="itemDescription">{{item.description}}</p>
-                <h4 class="itemPrice">$ {{item.price}}</h4>
-                <div class="itemImg">
-                    
-                </div>
+            <form method="POST" action="/add">
+                <div class="itemCard">
+                    <h3 class="itemName">{{item.name}}</h3>
+                    <p class="itemDescription">{{item.description}}</p>
+                    <h4 class="itemPrice">$ {{item.price}}</h4>
+                    <div class="itemImg">
+                        
+                    </div>
 
-                <button class="itemAddToCartBtn" type="submit" id="{{item.id}}"></button>    
-                </button>
-            </div> 
+                    <input type="hidden" value="{{item.id}}" name="itemId">
+                    <div class="addToCartButton">
+                        <input type="submit" value="Add To Cart">
+                    </div>
+                </div> 
+            </form>
             {% endfor %}
         </div>
     </div>
@@ -260,20 +263,22 @@
 
 
             <div class="cartContent">
-                {% for item in stuff%}
-                x= item.id
-            
-                <div class="itemCard">
-                    <h3 class="itemName">{{item.name}}</h3>
-                    <p class="itemDescription">{{item.description}}</p>
-                    <h4 class="itemPrice">$ {{item.price}}</h4>
-                    <div class="itemImg">
-                        
-                    </div>
+                {% for item in cartItems%}
+                <form method="POST" action="/remove">
+                    <div class="itemCard">
+                        <h3 class="itemName">{{item.name}}</h3>
+                        <p class="itemDescription">{{item.description}}</p>
+                        <h4 class="itemPrice">$ {{item.price}}</h4>
+                        <div class="itemImg">
+                            
+                        </div>
     
-                    <button class="itemAddToCartBtn" type="submit" id="{{item.id}}" action="/addItem/{{item.id}}" method="GET" onclick="addItem(this.id)"></button>    
-                    </button>
-                </div> 
+                        <input type="hidden" value="{{item.id}}" name="itemId">
+                        <div class="removeBtn">
+                            <input type="submit" value="Remove Item">
+                        </div>
+                    </div> 
+                </form>
                 {% endfor %}
             </div>
 
@@ -281,7 +286,14 @@
 
 
             
-            <div class="proceed"></div>
+            <div class="proceed">
+                <form method="POST" action="/empty">
+                    <input type="submit" value="Empty">
+                </form>
+                <div>
+                    {{cartTotal}}
+                </div>
+            </div>
         </div>
     </div>
 </body>

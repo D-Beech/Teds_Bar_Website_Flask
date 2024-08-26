@@ -66,10 +66,38 @@ class Wine(MenuItem):
 
 
 
-#Cart Class
-# class Cart(db.Model):
-#     __tablename__="Cart"
-#     id = db.Column(db.Integer, primary_key=True)
+class Cart():
+    def __init__(self):
+        self.cart_items = []
+        pass
+
+    def add_item(self, item_id):
+        self.cart_items.append(item_id)
+        pass
+
+    def remove_item(self, item_id):
+        self.cart_items.remove(item_id)
+        pass
+
+    def total_price(self):
+        total = 0
+        cart = Cart.get_contents(self)
+        for x in cart:
+            total += x.price
+        return total
+    
+    def empty_cart(self):
+        self.cart_items = []
+
+    def get_contents_as_ids(self):
+        return self.cart_items()
+
+    def get_contents(self):
+        cart_menu_items = []
+        for x in self.cart_items:
+            cart_menu_items += MenuItem.query.where(MenuItem.id == x)
+        return cart_menu_items
+
 
 class Completed_Order():
     def __init__(self, _cart, _customer_details):
