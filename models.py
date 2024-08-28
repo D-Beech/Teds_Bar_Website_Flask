@@ -107,6 +107,25 @@ class Cart(db.Model):
         for x in self.cart_items:
             cart_menu_items += MenuItem.query.where(MenuItem.id == x)
         return cart_menu_items
+    
+
+class Customer_Details(db.Model):
+    __tablename__ = 'Customer_Details'
+
+    id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(30))
+    last_name = db.Column(db.String(30))
+    pick_up_time = db.Column(db.String(30))
+
+    def __init__(self, firstName, lastName, pickUpTime):
+        self.first_name = firstName
+        self.last_name = lastName
+        self.pick_up_time = pickUpTime        
+        pass
+
+
+
+
 
 
 class Completed_Order():
