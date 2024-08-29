@@ -1,501 +1,263 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order</title>
-    <script
-    src="https://code.jquery.com/jquery-3.7.1.min.js"
-    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-    crossorigin="anonymous"></script>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <title>Landing Page</title>
+
+  <style>
+
+    .heroContainer{
+      max-width: 100%;
+      max-height: 400px; 
+      overflow: hidden;
+    }
+
+    .heroContainer img{
+      max-width: 100%;
+    }
+
+    .orderHeader{
+      display: flex;
+      padding-top: 20px;
+     
+    }
+
+    .card{
+      margin-top: 6px;
+      padding: 0px;
+    }
+
+    .cardLeft{
+      width: 70%;
+    }
+
+    .cardRight{
+      width: 30%;
+      display: flex;
+      flex-wrap: wrap;
+      align-content: space-around;
+      justify-content: center;
+    }
+
+    .cardRight img{
+      height: 100%;
+      max-width: 100%;
+    }
+
+    .btn-group{
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
 
 
 
-    <script>
-        function closeCart(){
-            document.getElementById("cart").style.display="none";
-            console.log("Cart Closed Click")
-        }
-
-        function openCart(){
-            document.getElementById("cart").style.display="block";
-            console.log("Cart Closed Click")
-        }
-
-        function hideAll(){
-            document.getElementById("snacks").style.display="none";
-            document.getElementById("burgers").style.display="none";
-        }
-
-        function showBurgers(){
-            hideAll();
-            document.getElementById("burgers").style.display="block";
-        }
-
-        function showAll(){
-            document.getElementById("burgers").style.display="block";
-            document.getElementById("snacks").style.display="block";
-        }
-
-        function showSnacks(){
-            hideAll();
-            document.getElementById("snacks").style.display="block";
-        }
-        
-        // let hello = "tree";
-        
-        // $(document).ready(function() {
-        //     $("#btn").click(function() {
-        //         $.ajax({
-        //             url: '',
-        //             type: 'get',
-        //             contentType: 'application/json',
-        //             data:{
-        //                 button_text: $(this).text(),
-        //             },
-        //             success: function(response){
-        //                 $("#btn").text(response.seconds)
-        //             }
-        //         });
-        //     });
 
 
-        // });
 
-
-        
-        </script>
+    
+    </style>
 
 </head>
 
-<style>
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f2f2f2;
-}
-
-img{
-    display: block;
-    width: 100%;
-    height: 100%;
-}
-
-/* Style the top navigation bar */
-.navbar {
-  overflow: hidden; /* Hide overflow */
-  background-color: #333; /* Dark background color */
-}
-
-/* Style the navigation bar links */
-.navbar a {
-  float: left; /* Make sure that the links stay side-by-side */
-  display: block; /* Change the display to block, for responsive reasons (see below) */
-  color: white; /* White text color */
-  text-align: center; /* Center the text */
-  padding: 14px 20px; /* Add some padding */
-  text-decoration: none; /* Remove underline */
-}
-
-/* Right-aligned link */
-.navbar a.right {
-  float: right; /* Float a link to the right */
-}
-
-/* Change color on hover/mouse-over */
-.navbar a:hover {
-  background-color: #ddd; /* Grey background color */
-  color: black; /* Black text color */
-}
-
-.container{
-    width: 1200px;
-    margin: auto;
-    /* background: pink; */
-    display: flex;
-}
-
-/*banner*/
-.banner{
-    width: 100%;
-    height: 40vh;
-    margin-top: 20px;
-    border-radius: 20px;
-    background: #333;
-    align-self: flex-end;
-    overflow: hidden;
-}
-
-.titleBox{
-    width: 100%;
-    height: 20vh;
-    margin-top: 20px;
-    border-radius: 20px;
-    background: beige;
-
-}
-
-.filterMenu{
-    display: flex;
-    width: 100%;
-    height: 30px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    border-radius: 20px;
-    background: beige;
-    align-self: flex-end;
-    justify-content: space-between;
-}
-
-.filterMenu button{
-    background: white;
-    width: 90px;
-    border: 1px;
-    border-style: solid;
-    border-color: #333;
-    border-radius: 5px;
-    box-shadow: 3px;
-}
 
 
-
-
-.navbar a {
-  float: left; /* Make sure that the links stay side-by-side */
-  display: block; /* Change the display to block, for responsive reasons (see below) */
-  color: white; /* White text color */
-  text-align: center; /* Center the text */
-  padding: 14px 20px; /* Add some padding */
-  text-decoration: none; /* Remove underline */
-}
-
-.itemGallery{
-    width: 100%;
-    height: flex;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    /* background: grey; */
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;    
-}
-
-.itemGallery .title{
-    height: auto;
-    width: 100%;
-}
-
-
-
-.itemCard{
-    width: 48%;
-    height: 150px;
-    margin-top: 5px;
-    background: white;
-    border: black;
-    border-style: solid;
-    border-width: 2px;
-    border-radius: 5px;
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(8, 1fr);
-}
-
-.itemName{
-    grid-column: 1/8;
-    padding-left: 20px;
-    grid-row: 3;
-}
-
-.itemDescription{
-    grid-column: 1/8;
-    padding-left: 20px;
-    grid-row: 4;
-}
-
-.itemPrice{
-    grid-column: 1/8;
-    padding-left: 20px;
-    grid-row: 7;
-}
-
-.itemImg{
-    grid-column: 10/13;
-    grid-row: 1/9;
-    background: darkgrey;
-}
-
-.emptyBtn{
-    display: flex;
-    justify-content: center;
-}
-
-.emptyBtn input{
-    background: none;
-    border: none;
-}
-
-.emptyBtn input:hover{
-    background: lightblue;
-}
-
-.itemAddToCartBtn{
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    background: white;
-    grid-column: 11;
-    border-radius: 20px;
-    grid-row: 6;
-    height: 35px;
-    width: 100px;
-}
-
-.itemAddToCartBtn input{
-    background: none;
-    border: none;
-}
-
-.footer {
-  padding: 20px; /* Some padding */
-  text-align: center; /* Center text*/
-  background: #ddd; /* Grey background */
-}
-
-.cart{
-    width: 400px;
-    height: 100vh;
-    background: white;
-    border-style: solid;
-    border-width: 2px;
-    border: 2px;
-    position: fixed;
-    top:0;
-    right:0;
-}
-
-
-.exit{
-    height: 10%;
-}
-
-.cartContent{
-    height:75%;
-    width: 100%;
-    justify-content: center;
-    overflow-y: scroll;
-    overflow-x: hidden;
-
-}
-
-.proceed{
-    height:10%;
-}
-
-.cart .itemCard{
-    width: 100%;
-    height: 100px;
-}
-
-.proceed{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-
-}
-
-.checkOut{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: green;
-    width: 80%;
-    height:40px;
-    border-radius: 20px;
-}
-
-.checkOut:hover{
-    background: lightgreen;
-}
-
-
-
-
-</style>
 
 
 <body>
 
-    <div class="navbar">
-        <a href="#">Link</a>
-        <a href="#">Link</a>
-        <a href="#">Link</a>
-        <button href="#" class="right" onclick="openCart()">Link</a>
+
+<!--Navbar-->  
+{% include "navbar.html" without context %}
+
+{% include "cart.html" without context %}
+
+
+<!--Hero-->  
+<div class="container">
+  <div class="heroContainer">
+    <img src="static\images\straw.jpg" class="hero" alt="Responsive image">
+  </div>
+</div>
+
+<!--Heading-->
+
+<div class="container">
+  <div class="orderHeader">
+    <h2 class="align-top">Order Pick Up</h2>
+  </div>
+</div> 
+
+<div class="container">
+    <h3 class="align-top">Order Pick Up</h3>
+</div>  
+
+<!--Filters-->
+
+<div class="container">
+  <div class="btn-group" role="group" aria-label="Basic example">
+    <button type="button" class="btn btn-secondary" onclick="showAll()">Show All</button>
+    <button type="button" class="btn btn-secondary" onclick="showBurgers()">Burgers</button>
+    <button type="button" class="btn btn-secondary" onclick="showSnacks()">Snacks</button>
+    <button type="button" class="btn btn-secondary">Beer</button>
+    <button type="button" class="btn btn-secondary">Wine</button>
+  </div>
+</div>
+
+
+
+<!--Menu-->
+
+<div class="container" id="burgers">
+
+  <!--Cards-->
+
+  
+  <h1>Burgers</h1>
+  <div class="row">
+
+    {% for item in burgers %}
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body d-flex">
+            <div class="cardLeft">
+              <h5 class="card-title">{{item.name}}</h5>
+              <p class="card-text">{{item.description}}</p>
+              <p class="card-text">$ {{item.price}}</p>
+              <button href="#" class="btn btn-primary" id="{{item.id}}" onclick="addToCartClick(this.id)">Add to Cart</button>
+            </div>
+            <div class="cardRight">
+              <img src="static\images\straw.jpg" alt="">
+            </div>
+        </div>
       </div>
-    <div>
-
-    <div class="container">
-       <div class="banner">
-             <img src="./hero_order.jpg" alt=""/>
-       </div>
     </div>
+    {% endfor %}
+  </div>
+</div> 
 
-    <div class="container">
-        <div class="titleBox">
-            <h1>Ted's Bar and Cafe</h1>
-            <h3>Open Hours:10:00AM - 9.30PM</h3>
-
-        </div>
-    </div>
-
-
-    <div class="container">
-        <div class="filterMenu">
-            <button onclick="showAll()">Show All</button>
-            <button onclick="showBurgers()">Burgers</button>
-            <button onclick="showSnacks()">Snacks</button>
-            <button>Beer</button>
-            <button>Wine</button>
-        </div>
-    </div>
-
-
-
-
-
-    <!--Start of Item Gallery stuff, will be generated dynamically-->
-
-    <div class="container">
-
-    </div>
-    <div class="container" id="burgers">
-
-
-        <div class="itemGallery" id="burgers">
-            <div class = "title">
-                <h2 >Burgers</h2>
+<div class="container" id="snacks">
+  <h1>Snacks</h1>
+  <div class="row">
+    {% for item in snacks %}
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body d-flex">
+            <div class="cardLeft">
+              <h5 class="card-title">{{item.name}}</h5>
+              <p class="card-text">{{item.description}}</p>
+              <p class="card-text">$ {{item.price}}</p>
+              <button class="btn btn-primary" id="{{item.id}}" onclick="addToCartClick(this.id)">Add to Cart</button>
             </div>
-
-            {%for item in burgers %}
-            <div class="itemCard">
-                <h3 class="itemName">{{item.name}}</h3>
-                <p class="itemDescription">{{item.description}}</p>
-                <h4 class="itemPrice">${{item.price}}</h4>
-
-                <div class="itemImg">
-                    
-                </div>
-
-                <form class="itemAddToCartBtn" action="/add" method="POST">
-                    <input type="hidden" value="{{item.id}}" name="itemId">
-                    <input  type="submit"  value="Add To Cart">
-                </form>
+            <div class="cardRight">
+              <img src="static\images\straw.jpg" alt="">
             </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div> 
 
-            {% endfor %}
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
+
+<script>
+//Item Gallery Filter Functions
+function hideAll(){
+    document.getElementById("snacks").style.display="none";
+    document.getElementById("burgers").style.display="none";
+}
+
+function showBurgers(){
+    hideAll();
+    document.getElementById("burgers").style.display="block";
+}
+
+function showAll(){
+    document.getElementById("burgers").style.display="block";
+    document.getElementById("snacks").style.display="block";
+}
+
+function showSnacks(){
+    hideAll();
+    document.getElementById("snacks").style.display="block";
+        }
+
+//Cart Functions
+
+
+//Add to Cart
+function addToCartClick(clicked_id){
+  console.log(clicked_id + " add to cart click")
+  url = '/add/' + clicked_id
+
+  console.log(url)
+
+  const asyncGetCall = async () => {
+          try {
+              const response = await fetch(url);
+              const data = await response.json();
+              // enter you logic when the fetch is successful
+              console.log(data)
+              
+             } catch(error) {
+          // enter your logic for when there is an error (ex. error toast)
+                console.log(error)
+               } 
+          }
+ asyncGetCall();
+
+ $("#mySidenav").load("/cart", "#mySidenav");
+
+
+
+//  window.onload = function(){
+//   const mainCart = document.getElementById("mySidenav")
+//   mainCart.innerHTML = html;
  
-        </div>
-    </div>
+
+}
+
+//Empty Cart
+//On the weekend I will try and refactor the repeated code here
+//I don't really understand what it's doing currently
+
+function emptyCartClick(){
+  console.log("empty cart click")
+  url = '/empty'
+
+  console.log(url)
+
+  const asyncGetCall = async () => {
+          try {
+              const response = await fetch(url);
+              const data = await response.json();
+              // enter you logic when the fetch is successful
+              console.log(data);
+              loadDoc();
+             } catch(error) {
+          // enter your logic for when there is an error (ex. error toast)
+                console.log(error)
+               } 
+          }
+ asyncGetCall();
+
+}
 
 
-
-    <div class="container">
-        
-            <div class="itemGallery" id="snacks">
-                <div class = "title">
-                    <h2 >Snacks</h2>
-                </div>
+</script>
 
 
-            {%for item in snacks %}
-            <div class="itemCard">
-                <h3 class="itemName">{{item.name}}</h3>
-                <p class="itemDescription">{{item.description}}</p>
-                <h4 class="itemPrice">${{item.price}}</h4>
-
-                <div class="itemImg"></div>
-                
-                <form class="itemAddToCartBtn" action="/add" method="POST">
-                    <input type="hidden" value="{{item.id}}" name="itemId">
-                    <input  type="submit"  value="Add To Cart">
-                </form>
-                
-
-            </div>
-
-            {% endfor %}  
-        </div>
-    </div>
-    <!--End of Item Gallery stuff, will be generated dynamically-->
-
-
-
-
-    <!--Start of Cart-->
-    <div class="container">
-        <div class="cart" id="cart">
-
-            <div class="exit">
-                <button onclick=closeCart()> x </button>
-
-            </div>
-
-
-            <div class="cartContent">
-                {% for item in cartItems%}
-                <form method="POST" action="/remove">
-                    <div class="itemCard">
-                        <h3 class="itemName">{{item.name}}</h3>
-                        <p class="itemDescription">{{item.description}}</p>
-                        <h4 class="itemPrice">$ {{item.price}}</h4>
-                        <div class="itemImg">
-                            
-                        </div>
-    
-                        <input type="hidden" value="{{item.id}}" name="itemId">
-                        <div class="removeBtn">
-                            <input type="submit" value=" x ">
-                        </div>
-                    </div> 
-                </form>
-                {% endfor %}
-            </div>
-
-
-            <div class="emptyBtn">
-                <form method="POST" action="/empty">
-                    <input type="submit" value="Empty Cart">
-                </form>
-            </div>
-
-            
-            <div class="proceed">
-
-                <div class="checkOut">
-                   <a href="/check_out">Check Out $ {{cartTotal}}</h3>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-    <button id="btn">btn</button>
 </body>
-
-
-
-
-
-
-
 </html>
-
-
