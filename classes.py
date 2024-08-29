@@ -1,22 +1,3 @@
-class Cart():
-    def __init__(self):
-        self.cart_items = []
-        pass
-
-    def add_item(item_id):
-        pass
-
-    def remove_item(ited_id):
-        pass
-
-    def total_price():
-        pass
-    
-    def empty_cart():
-        pass
-
-    def get_cart_contents():
-        pass
 
 
 class Customer_Details():

@@ -4,6 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order</title>
+    <script
+    src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+    crossorigin="anonymous"></script>
+
+
+
+    <script>
+        function closeCart(){
+            document.getElementById("cart").style.display="none";
+            console.log("Cart Closed Click")
+        }
+
+        function openCart(){
+            document.getElementById("cart").style.display="block";
+            console.log("Cart Closed Click")
+        }
+
+        function hideAll(){
+            document.getElementById("snacks").style.display="none";
+            document.getElementById("burgers").style.display="none";
+        }
+
+        function showBurgers(){
+            hideAll();
+            document.getElementById("burgers").style.display="block";
+        }
+
+        function showAll(){
+            document.getElementById("burgers").style.display="block";
+            document.getElementById("snacks").style.display="block";
+        }
+
+        function showSnacks(){
+            hideAll();
+            document.getElementById("snacks").style.display="block";
+        }
+        
+        // let hello = "tree";
+        
+        // $(document).ready(function() {
+        //     $("#btn").click(function() {
+        //         $.ajax({
+        //             url: '',
+        //             type: 'get',
+        //             contentType: 'application/json',
+        //             data:{
+        //                 button_text: $(this).text(),
+        //             },
+        //             success: function(response){
+        //                 $("#btn").text(response.seconds)
+        //             }
+        //         });
+        //     });
+
+
+        // });
+
+
+        
+        </script>
+
 </head>
 
 <style>
@@ -17,6 +79,12 @@
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f2f2f2;
+}
+
+img{
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 
 /* Style the top navigation bar */
@@ -47,7 +115,7 @@ body {
 }
 
 .container{
-    width: 1400px;
+    width: 1200px;
     margin: auto;
     /* background: pink; */
     display: flex;
@@ -59,8 +127,9 @@ body {
     height: 40vh;
     margin-top: 20px;
     border-radius: 20px;
-    background: black;
+    background: #333;
     align-self: flex-end;
+    overflow: hidden;
 }
 
 .titleBox{
@@ -69,23 +138,29 @@ body {
     margin-top: 20px;
     border-radius: 20px;
     background: beige;
-    align-self: flex-end;
+
 }
 
 .filterMenu{
+    display: flex;
     width: 100%;
+    height: 30px;
     margin-top: 20px;
     margin-bottom: 20px;
     border-radius: 20px;
     background: beige;
     align-self: flex-end;
+    justify-content: space-between;
 }
 
 .filterMenu button{
-    /* background: none;
-    border: none;
-    outline: none;
-    box-shadow: none;  */
+    background: white;
+    width: 90px;
+    border: 1px;
+    border-style: solid;
+    border-color: #333;
+    border-radius: 5px;
+    box-shadow: 3px;
 }
 
 
@@ -110,6 +185,13 @@ body {
     flex-wrap: wrap;
     justify-content: space-between;    
 }
+
+.itemGallery .title{
+    height: auto;
+    width: 100%;
+}
+
+
 
 .itemCard{
     width: 48%;
@@ -149,13 +231,35 @@ body {
     background: darkgrey;
 }
 
+.emptyBtn{
+    display: flex;
+    justify-content: center;
+}
+
+.emptyBtn input{
+    background: none;
+    border: none;
+}
+
+.emptyBtn input:hover{
+    background: lightblue;
+}
+
 .itemAddToCartBtn{
+    display: flex;
+    align-content: center;
+    justify-content: center;
     background: white;
     grid-column: 11;
     border-radius: 20px;
     grid-row: 6;
     height: 35px;
-    
+    width: 100px;
+}
+
+.itemAddToCartBtn input{
+    background: none;
+    border: none;
 }
 
 .footer {
@@ -163,6 +267,66 @@ body {
   text-align: center; /* Center text*/
   background: #ddd; /* Grey background */
 }
+
+.cart{
+    width: 400px;
+    height: 100vh;
+    background: white;
+    border-style: solid;
+    border-width: 2px;
+    border: 2px;
+    position: fixed;
+    top:0;
+    right:0;
+}
+
+
+.exit{
+    height: 10%;
+}
+
+.cartContent{
+    height:75%;
+    width: 100%;
+    justify-content: center;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+}
+
+.proceed{
+    height:10%;
+}
+
+.cart .itemCard{
+    width: 100%;
+    height: 100px;
+}
+
+.proceed{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.checkOut{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: green;
+    width: 80%;
+    height:40px;
+    border-radius: 20px;
+}
+
+.checkOut:hover{
+    background: lightgreen;
+}
+
+
+
 
 </style>
 
@@ -173,12 +337,14 @@ body {
         <a href="#">Link</a>
         <a href="#">Link</a>
         <a href="#">Link</a>
-        <a href="#" class="right">Link</a>
+        <button href="#" class="right" onclick="openCart()">Link</a>
       </div>
     <div>
 
     <div class="container">
-       <div class="banner"></div>
+       <div class="banner">
+             <img src="./hero_order.jpg" alt=""/>
+       </div>
     </div>
 
     <div class="container">
@@ -192,9 +358,9 @@ body {
 
     <div class="container">
         <div class="filterMenu">
-            <button>Show All</button>
-            <button>Snacks</button>
-            <button>Mains</button>
+            <button onclick="showAll()">Show All</button>
+            <button onclick="showBurgers()">Burgers</button>
+            <button onclick="showSnacks()">Snacks</button>
             <button>Beer</button>
             <button>Wine</button>
         </div>
@@ -207,55 +373,129 @@ body {
     <!--Start of Item Gallery stuff, will be generated dynamically-->
 
     <div class="container">
-        <h2>Mains</h2>
+
     </div>
-    <div class="container">
-        <div class="itemGallery">
+    <div class="container" id="burgers">
+
+
+        <div class="itemGallery" id="burgers">
+            <div class = "title">
+                <h2 >Burgers</h2>
+            </div>
+
+            {%for item in burgers %}
             <div class="itemCard">
-                <h3 class="itemName">Name</h3>
-                <p class="itemDescription">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta natus facilis consequuntur nulla rem nam, quisquam nesciunt labore fuga deserunt?</p>
-                <h4 class="itemPrice">$19.98</h4>
+                <h3 class="itemName">{{item.name}}</h3>
+                <p class="itemDescription">{{item.description}}</p>
+                <h4 class="itemPrice">${{item.price}}</h4>
 
                 <div class="itemImg">
                     
                 </div>
 
-                <button class="itemAddToCartBtn">
-                    Add
-                </button>
+                <form class="itemAddToCartBtn" action="/add" method="POST">
+                    <input type="hidden" value="{{item.id}}" name="itemId">
+                    <input  type="submit"  value="Add To Cart">
+                </form>
             </div>
-            <div class="itemCard"></div>
-            <div class="itemCard"></div>
-            <div class="itemCard"></div>
-            <div class="itemCard"></div>
-            <div class="itemCard"></div>
-            <div class="itemCard"></div>
-            <div class="itemCard"></div>      
+
+            {% endfor %}
+ 
         </div>
     </div>
 
-    <div class="container">
-        <h2>Drinks</h2>
-    </div>
+
 
     <div class="container">
-        <div class="itemGallery">
-            <div class="itemCard"></div>
-            <div class="itemCard"></div>
-            <div class="itemCard"></div>
-            <div class="itemCard"></div>
-            <div class="itemCard"></div>     
+        
+            <div class="itemGallery" id="snacks">
+                <div class = "title">
+                    <h2 >Snacks</h2>
+                </div>
+
+
+            {%for item in snacks %}
+            <div class="itemCard">
+                <h3 class="itemName">{{item.name}}</h3>
+                <p class="itemDescription">{{item.description}}</p>
+                <h4 class="itemPrice">${{item.price}}</h4>
+
+                <div class="itemImg"></div>
+                
+                <form class="itemAddToCartBtn" action="/add" method="POST">
+                    <input type="hidden" value="{{item.id}}" name="itemId">
+                    <input  type="submit"  value="Add To Cart">
+                </form>
+                
+
+            </div>
+
+            {% endfor %}  
         </div>
     </div>
     <!--End of Item Gallery stuff, will be generated dynamically-->
 
-    <div class="footer">
-        <h2>Footer</h2>
+
+
+
+    <!--Start of Cart-->
+    <div class="container">
+        <div class="cart" id="cart">
+
+            <div class="exit">
+                <button onclick=closeCart()> x </button>
+
+            </div>
+
+
+            <div class="cartContent">
+                {% for item in cartItems%}
+                <form method="POST" action="/remove">
+                    <div class="itemCard">
+                        <h3 class="itemName">{{item.name}}</h3>
+                        <p class="itemDescription">{{item.description}}</p>
+                        <h4 class="itemPrice">$ {{item.price}}</h4>
+                        <div class="itemImg">
+                            
+                        </div>
+    
+                        <input type="hidden" value="{{item.id}}" name="itemId">
+                        <div class="removeBtn">
+                            <input type="submit" value=" x ">
+                        </div>
+                    </div> 
+                </form>
+                {% endfor %}
+            </div>
+
+
+            <div class="emptyBtn">
+                <form method="POST" action="/empty">
+                    <input type="submit" value="Empty Cart">
+                </form>
+            </div>
+
+            
+            <div class="proceed">
+
+                <div class="checkOut">
+                   <a href="/check_out">Check Out $ {{cartTotal}}</h3>
+                </div>
+            </div>
+        </div>
     </div>
 
 
 
+    <button id="btn">btn</button>
 </body>
+
+
+
+
+
+
+
 </html>
 
 
